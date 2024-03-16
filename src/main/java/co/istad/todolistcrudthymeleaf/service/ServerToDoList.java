@@ -10,4 +10,5 @@ public interface ServerToDoList {
     public ToDoList findById(Integer id);
     public void updateToDoList(ToDoList toDoList);
     public void deleteToDoList(Integer id);
+    List<ToDoList> searchByTaskAndIsDone(String task, Boolean isDone);
 }

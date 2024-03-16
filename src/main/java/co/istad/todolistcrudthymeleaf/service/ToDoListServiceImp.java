@@ -5,7 +5,9 @@ import co.istad.todolistcrudthymeleaf.repository.ToDoListRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -62,4 +64,20 @@ public class ToDoListServiceImp implements ServerToDoList{
 
         }
     }
+
+    @Override
+    public List<ToDoList> searchByTaskAndIsDone(String task, Boolean isDone) {
+        List<ToDoList> allToDoLists = toDoListRepository.getToDoLists();
+        List<ToDoList> searchResults = new ArrayList<>();
+        for (ToDoList searchList : allToDoLists) {
+            // Check if task contains the provided substring and matches the isDone value
+            if ((task == null || searchList.getTask().toLowerCase().contains(task)) && searchList.getIsDone().equals(isDone)) {
+                searchResults.add(searchList);
+            }
+        }
+        System.out.println(searchResults);
+        return searchResults;
+    }
+
+
 }

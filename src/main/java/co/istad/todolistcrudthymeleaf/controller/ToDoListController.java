@@ -5,10 +5,7 @@ import co.istad.todolistcrudthymeleaf.service.ServerToDoList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -53,5 +50,15 @@ public class ToDoListController {
     public String deleteProduct(@PathVariable("id") Integer id) {
         serverToDoList.deleteToDoList(id);
         return "redirect:/todo";
+    }
+
+
+    @GetMapping("/todo/search")
+    public String search(@RequestParam(name = "task", required = false) String task,
+                         @RequestParam(name = "isDone", required = false, defaultValue = "false") Boolean isDone,
+                         Model model) {
+        List<ToDoList> searchResults = serverToDoList.searchByTaskAndIsDone(task, isDone);
+        model.addAttribute("toDoLists", searchResults);
+        return "redirect:/todo"; // Return to the index page with search results
     }
 }

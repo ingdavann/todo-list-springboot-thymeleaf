@@ -17,4 +17,5 @@ public class ToDoListRepository {
         toDoLists.add(new ToDoList(2,"Learn JavaScript Basic","Java Review feature and first app",true, LocalDate.now()));
         toDoLists.add(new ToDoList(3,"Learn Bootstrap Basic","Java Review feature and first app",true, LocalDate.now()));
     }
+
 }
