@@ -69,14 +69,16 @@ public class ToDoListServiceImp implements ServerToDoList{
     public List<ToDoList> searchByTaskAndIsDone(String task, Boolean isDone) {
         List<ToDoList> allToDoLists = toDoListRepository.getToDoLists();
         List<ToDoList> searchResults = new ArrayList<>();
-        for (ToDoList searchList : allToDoLists) {
-            // Check if task contains the provided substring and matches the isDone value
-            if ((task == null || searchList.getTask().toLowerCase().contains(task)) && searchList.getIsDone().equals(isDone)) {
-                searchResults.add(searchList);
-            }
-        }
-        System.out.println(searchResults);
-        return searchResults;
+        return allToDoLists.stream().filter(e->e.getTask().equals(task)).filter(e->e.getIsDone().equals(isDone))
+                .toList();
+//        for (ToDoList searchList : allToDoLists) {
+//            // Check if task contains the provided substring and matches the isDone value
+//            if ((task == null || searchList.getTask().toLowerCase().contains(task)) && searchList.getIsDone().equals(isDone)) {
+//                searchResults.add(searchList);
+//            }
+//        }
+//        System.out.println(searchResults);
+//        return searchResults;
     }
 
 

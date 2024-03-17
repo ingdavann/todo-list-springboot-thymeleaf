@@ -57,8 +57,9 @@ public class ToDoListController {
     public String search(@RequestParam(name = "task", required = false) String task,
                          @RequestParam(name = "isDone", required = false, defaultValue = "false") Boolean isDone,
                          Model model) {
+        System.out.println(task);
         List<ToDoList> searchResults = serverToDoList.searchByTaskAndIsDone(task, isDone);
         model.addAttribute("toDoLists", searchResults);
-        return "redirect:/todo"; // Return to the index page with search results
+        return "index"; // Return to the index page with search results
     }
 }

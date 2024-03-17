@@ -9,9 +9,9 @@
     <main class="container mt-5">
         <h1 class="text-center fw-bolder text-info">TO DO LIST</h1>
         <!-- Search form -->
-        <form th:action="@{/todo/search}" method="get" class="mb-3 mt-5">
+        <form th:action="@{/todo/search}"  method="get" class="mb-3 mt-5">
             <div class="input-group">
-                <input type="text" name="task" class="form-control" placeholder="Search...">
+                <input type="text" th:name="task" class="form-control" placeholder="Search...">
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </form>
@@ -21,7 +21,7 @@
         </a>
 
         <!-- Check if search results are available  -->
-        <div th:if="${searchResults == null or #lists.isEmpty(searchResults)}">
+        <div th:if="${searchResults != null or #lists.isEmpty(searchResults)}">
             <table class="table table-info table-hover mt-3">
             <thead>
             <tr>
@@ -49,7 +49,7 @@
         </table>
         </div>
         <!-- If search results are not available -->
-        <div th:if="${searchResults != null and not #lists.isEmpty(searchResults)}">
+        <div th:if="${searchResults == null and not #lists.isEmpty(searchResults)}">
             <p>No search results found.</p>
         </div>
    </main>
